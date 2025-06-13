@@ -25,14 +25,14 @@ const createll = (arr) => {
 };
 
 const printll = (head) => {
-    let ll = "";
+    let ll = '';
 
     while (head) {
         ll += `${head.val} => `;
         head = head.next;
     }
 
-    ll += "null";
+    ll += 'null';
 
     return ll;
 };
@@ -102,7 +102,6 @@ const insertll = (head, index, val) => {
     let currHead = head;
 
     while (currHead) {
-
         currHead = currHead.next;
     }
 

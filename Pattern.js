@@ -2,9 +2,9 @@ let ip = 4;
 let r = 2 * ip - 1;
 
 for (let i = 0; i < r; i++) {
-    let row = "";
+    let row = '';
     for (let j = 0; j < r; j++) {
-        row += ip - Math.min(i, j, r - i - 1, r - j - 1) + " ";
+        row += ip - Math.min(i, j, r - i - 1, r - j - 1) + ' ';
     }
     console.log(row);
 }
@@ -22,9 +22,9 @@ for (let i = 0; i < r; i++) {
 ip = 4;
 r = 2 * ip - 1;
 for (let i = 0; i < r; i++) {
-    let row = "";
+    let row = '';
     for (let j = 0; j < r; j++) {
-        row += Math.min(i, j, r - i - 1, r - j - 1) + " ";
+        row += Math.min(i, j, r - i - 1, r - j - 1) + ' ';
     }
     console.log(row);
 }

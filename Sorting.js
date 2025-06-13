@@ -1,8 +1,3 @@
-const arr1 = [3, 2, 1];
-const arr2 = [100, 3, 9, 82, 8, 83, 23, 90, 1, 5, 42, 77, 15, 62, 2];
-const arr3 = [1];
-const arr4 = [1, 2, 3, 4];
-
 /**
  * Selection sort
  */
@@ -124,15 +119,66 @@ const mergeSort = (arr) => {
     return mergeTwoSortedArray(left, right);
 };
 
+const mergeTwoSortedArrayIdx = (arr, si, ei, mid) => {
+    const result = [];
 
-const mergeSort2 = (arr, si, ei) => {
-    if (si === ei)
+    let a = si;
+    let b = mid + 1;
 
-         
+    while (a <= mid && b <= ei) {
+        if (arr[a] <= arr[b]) {
+            result.push(arr[a]);
+            a++;
+        } else {
+            result.push(arr[b]);
+            b++;
+        }
+    }
 
-}
+    while (a <= mid) {
+        result.push(arr[a]);
+        a++;
+    }
 
-console.log(mergeSort(arr1));
-console.log(mergeSort(arr2));
-console.log(mergeSort(arr3));
-console.log(mergeSort(arr4));
+    while (b <= ei) {
+        result.push(arr[b]);
+        b++;
+    }
+
+    for (let i = 0; i < result.length; i++) {
+        arr[i + si] = result[i];
+    }
+};
+
+const mergeSortIdx = (arr, si = 0, ei = arr.length - 1) => {
+    if (ei === si) return arr;
+
+    const mid = Math.floor((si + ei) / 2);
+
+    mergeSortIdx(arr, si, mid);
+    mergeSortIdx(arr, mid + 1, ei);
+
+    mergeTwoSortedArrayIdx(arr, si, ei, mid);
+
+    return arr;
+};
+
+/**
+ * mergeSort(si, mid);
+ * mergeSort(mid+1, ei);
+ *      ✅ Correct	     Properly reduces recursion
+ *
+ * mergeSort(si, mid-1);
+ * mergeSort(mid, ei);
+ *      ❌ Infinite loop	 Right side never shrinks
+ */
+
+const arr1 = [3, 2, 1];
+const arr2 = [100, 3, 9, 82, 8, 83, 23, 90, 1, 5, 42, 77, 15, 62, 2];
+const arr3 = [1];
+const arr4 = [1, 2, 3, 4];
+
+console.log(mergeSortIdx(arr1));
+console.log(mergeSortIdx(arr2));
+console.log(mergeSortIdx(arr3));
+console.log(mergeSortIdx(arr4));
