@@ -9,7 +9,7 @@ const getLargestEle = (arr) => {
     return largest;
 };
 
-const seondLargest = (arr) => {
+const secondLargest = (arr) => {
     arr.sort((a, b) => b - a);
 
     let largest = null;
@@ -33,19 +33,39 @@ const seondLargest2 = (arr) => {
         }
     }
 
-    let seondLargest = null;
+    let secondLargest = null;
     for (let i = 0; i < arr.length; i++) {
         if (
-            (seondLargest === null && arr[i] < largest) ||
-            (arr[i] < largest && arr[i] > seondLargest)
+            (secondLargest === null && arr[i] < largest) ||
+            (arr[i] < largest && arr[i] > secondLargest)
         ) {
-            seondLargest = arr[i];
+            secondLargest = arr[i];
         }
     }
 
-    return seondLargest;
+    return secondLargest;
 };
 
-console.log(seondLargest2([210, 1, 2, 4, 8, 90]));
-console.log(seondLargest2([1, 10]));
-console.log(seondLargest2([]));
+const secondLargest3 = (arr) => {
+    if (arr.length === 0) return null;
+
+    let l = arr[0];
+    let s = null;
+
+    for (let i = 1; i < arr.length; i++) {
+        const ele = arr[i];
+
+        if (ele > l) {
+            s = l;
+            l = ele;
+        } else if (s === null || ele > s) {
+            s = ele;
+        }
+    }
+
+    return s;
+};
+
+console.log(secondLargest3([210, 1, 2, 4, 8, 90]));
+console.log(secondLargest3([1, 10]));
+console.log(secondLargest3([]));

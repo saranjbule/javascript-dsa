@@ -41,32 +41,16 @@ const bubbleSort = (arr) => {
     return arr;
 };
 
-const bubbleSort2 = (arr) => {
-    for (let i = arr.length - 1; i > 0; i--) {
-        let noSwap = true;
-
-        for (let j = 0; j < i; j++) {
-            if (arr[j] > arr[j + 1]) {
-                noSwap = false;
-                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
-            }
-        }
-
-        if (noSwap) break;
-    }
-
-    return arr;
-};
-
 /**
  * Insertion sort
  */
 
 const insertionSort = (arr) => {
     for (let i = 1; i < arr.length; i++) {
-        while (i > 0 && arr[i - 1] > arr[i]) {
-            [arr[i], arr[i - 1]] = [arr[i - 1], arr[i]];
-            i--;
+        let j = i;
+        while (j > 0 && arr[j - 1] > arr[j]) {
+            [arr[j], arr[j - 1]] = [arr[j - 1], arr[j]];
+            j--;
         }
     }
 
@@ -162,23 +146,3 @@ const mergeSortIdx = (arr, si = 0, ei = arr.length - 1) => {
 
     return arr;
 };
-
-/**
- * mergeSort(si, mid);
- * mergeSort(mid+1, ei);
- *      ✅ Correct	     Properly reduces recursion
- *
- * mergeSort(si, mid-1);
- * mergeSort(mid, ei);
- *      ❌ Infinite loop	 Right side never shrinks
- */
-
-const arr1 = [3, 2, 1];
-const arr2 = [100, 3, 9, 82, 8, 83, 23, 90, 1, 5, 42, 77, 15, 62, 2];
-const arr3 = [1];
-const arr4 = [1, 2, 3, 4];
-
-console.log(mergeSortIdx(arr1));
-console.log(mergeSortIdx(arr2));
-console.log(mergeSortIdx(arr3));
-console.log(mergeSortIdx(arr4));

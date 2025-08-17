@@ -1,5 +1,54 @@
 /**
- * Stack using Array
+ * Fixed size stack using Array
+ */
+class STACK {
+    constructor(size) {
+        this.stack = Array(size);
+        this.top = -1;
+    }
+
+    push(val) {
+        if (this.top === this.stack.length - 1) {
+            console.log('STACK IS FULL');
+            return;
+        }
+
+        this.top++;
+        this.stack[this.top] = val;
+    }
+
+    pop() {
+        if (this.isEmpty()) {
+            console.log('STACK IS EMPTY');
+            return;
+        }
+
+        const val = this.stack[this.top];
+        this.top--;
+
+        return val;
+    }
+
+    getTop() {
+        if (this.isEmpty()) {
+            console.log('STACK IS EMPTY');
+            return;
+        }
+
+        return this.stack[this.top];
+    }
+
+    isEmpty() {
+        return this.top === -1;
+    }
+
+    getSize() {
+        return this.top + 1;
+    }
+}
+
+/**
+ * Dynamic stack using Array
  */
 
 class Stack_Array {
@@ -56,13 +105,11 @@ class STACK_LINKEDLIST {
     push(item) {
         const n = new Node(item);
 
-        if (this.stack === null) {
-            this.stack = n;
-        } else {
+        if (this.stack) {
             n.next = this.stack;
-            this.stack = n;
         }
 
+        this.stack = n;
         this.sizeCount += 1;
     }
 
@@ -102,18 +149,18 @@ class STACK_LINKEDLIST {
     }
 }
 
-const s = new STACK_LINKEDLIST();
-console.log(s.size());
+const s = new STACK(10);
+console.log(s.getSize());
 console.log(s.isEmpty());
 console.log(s.push(10));
 console.log(s.push(20));
 console.log(s.push(30));
 
-console.log(s.size());
-console.log(s.top());
+console.log(s.getSize());
+console.log(s.getTop());
 console.log(s.isEmpty());
 console.log(s.pop());
-console.log(s.top());
+console.log(s.getTop());
 console.log(s.pop());
 console.log(s.pop());
 console.log(s.pop());

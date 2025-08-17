@@ -24,10 +24,12 @@ const digitCount = (n) => {
 
     return length;
 };
+// Time Complexity O(logn) | Space Complexity O(1)
 
 const digitCount2 = (n) => {
     return Math.floor(Math.log10(n) + 1);
 };
+// Time Complexity O(logn) | Space Complexity O(1)
 
 const reverse = (n) => {
     let multiplyFactor = digitCount2(n) - 1;
@@ -79,7 +81,7 @@ const armstrongNubmer = (n) => {
 const factors = (n) => {
     const nums = new Set([1]);
 
-    for (let i = 2; i <= Math.sqrt(n); i++) {
+    for (let i = 2; i <= Math.sqrt(n); i++) { // i <= Math.sqrt(n) can be written as i * i <= n
         if (n % i === 0) {
             nums.add(i);
             nums.add(Math.floor(n / i));
@@ -113,6 +115,16 @@ const isPrime2 = (n) => {
     return fact === 0;
 };
 
+const isPrime3 = (n) => {
+    if (n === 1) return false;
+
+    for (let i = 2; i * i <= n; i++) {
+        if (n % i === 0 || n % Math.floor(n / i) === 0) return false;
+    }
+
+    return true;
+};
+
 const gcd = (a, b) => {
     const f = Math.min(a, b);
 
@@ -125,9 +137,12 @@ const gcd = (a, b) => {
     return 1;
 };
 
-// euclidean gcd formula
-// gcd(a, b) = gcd(a - b, b) or gcd(a, b) = gcd(a % b, b)
-
+/**
+ * euclidean gcd formula
+ * - gcd(a, b) = gcd(a - b, b)
+ * - gcd(a, b) = gcd(a % b, b)
+ * where a > b
+ */
 const gcd2 = (a, b) => {
     if (a === 0) return b;
 
