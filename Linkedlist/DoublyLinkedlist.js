@@ -124,11 +124,43 @@ class DoublyLinkedlist {
 
         return prev;
     };
+
+    reverse2 = (head) => {
+        while (head) {
+            const back = head.prev;
+            const next = head.next;
+
+            head.prev = next;
+            head.next = back;
+
+            if (!next) break;
+
+            head = next;
+        }
+
+        return head;
+    };
+
+    reverse3 = (head) => {
+        if (!head) return null;
+        
+        let back = null;
+        while (head) {
+            back = head.prev;
+
+            head.prev = head.next;
+            head.next = back;
+
+            head = head.prev;
+        }
+
+        return back.prev;
+    };
 }
 
 const d = new DoublyLinkedlist();
 const head = d.create([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 console.log(d.print(head));
 
-const rHead = d.reverse(head);
+const rHead = d.reverse3(head);
 console.log(d.print(rHead));
