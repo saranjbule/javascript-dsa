@@ -36,7 +36,7 @@ const seondLargest2 = (arr) => {
     let secondLargest = null;
     for (let i = 0; i < arr.length; i++) {
         if (
-            (secondLargest === null && arr[i] < largest) ||
+            secondLargest === null ||
             (arr[i] < largest && arr[i] > secondLargest)
         ) {
             secondLargest = arr[i];
