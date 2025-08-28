@@ -146,3 +146,53 @@ const mergeSortIdx = (arr, si = 0, ei = arr.length - 1) => {
 
     return arr;
 };
+
+/**
+ * Quick Sort
+ */
+const quickSort = (arr, si = 0, ei = arr.length - 1) => {
+    if (si >= ei) return;
+
+    const getPivot = (s, e) => {
+        let pi = s;
+        let pEle = arr[pi];
+
+        for (let i = s + 1; i <= e; i++) {
+            if (arr[i] < pEle) {
+                pi++;
+            }
+        }
+
+        if (pi !== s) {
+            [arr[pi], arr[s]] = [arr[s], arr[pi]];
+        }
+
+        let i = s;
+        let j = e;
+
+        while (i < pi && pi < j) {
+            if (arr[i] < pEle) {
+                i++;
+            } else if (arr[j] > pEle) {
+                j--;
+            } else {
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+                i++;
+                j--;
+            }
+        }
+
+        return pi;
+    };
+
+    const p = getPivot(si, ei);
+
+    quickSort(arr, si, p - 1);
+    quickSort(arr, p + 1, ei);
+};
+
+const arr = [10202, 234, 341, 24, 321, 2, 142, 124, 1, 2, 0];
+
+quickSort(arr);
+
+console.log(arr);
