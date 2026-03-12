@@ -67,15 +67,15 @@ const armstrongNubmer = (n) => {
     const total = digitCount2(n);
     const num = n;
 
-    let asn = 0;
+    let ans = 0;
 
     while (n) {
         const lastDigit = n % 10;
-        asn += lastDigit ** total;
+        ans += lastDigit ** total;
         n = Math.floor(n / 10);
     }
 
-    return asn === num;
+    return ans === num;
 };
 
 const factors = (n) => {
@@ -99,20 +99,6 @@ const isPrime = (n) => {
     }
 
     return true;
-};
-
-const isPrime2 = (n) => {
-    let fact = 0;
-
-    for (let i = 2; i * i <= n; i++) {
-        if (n % i === 0) {
-            fact += 2;
-        }
-
-        if (fact) return false;
-    }
-
-    return fact === 0;
 };
 
 const isPrime3 = (n) => {

@@ -21,6 +21,6 @@
  * - Balanced Binary Tree
  *   - height of tree is at max log(N) (N is number of node)
  *
- * - Degenerate Tree
- *   - every node has single children (skew tree)
+ * - Degenerate Tree | Skew Tree
+ *   - every node has single children
  */
